@@ -7,6 +7,6 @@ RUN apt update && apt install apt-utils gconf-service libasound2 libatk1.0-0 lib
   libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget -y
 
 COPY entrypoint.sh /entrypoint.sh
-COPY main.js /main.js
+COPY analyzer.js /analyzer.js
 
 ENTRYPOINT ["/entrypoint.sh"]
