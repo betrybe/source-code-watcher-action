@@ -1,8 +1,8 @@
 #!/bin/sh -l
 
-cp /analyzer.js /
-cp /package-lock.json /
-cp /package.json /
+cp /analyzer.js ${!GITHUB_WORKSPACE}
+cp /package-lock.json ${!GITHUB_WORKSPACE}
+cp /package.json ${!GITHUB_WORKSPACE}
 
 npm install
 
