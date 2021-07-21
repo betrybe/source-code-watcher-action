@@ -1,12 +1,12 @@
 #!/bin/sh -l
 
-cp /main.js /github/workspace
-cp /package-lock.json /github/workspace
-cp /package.json /github/workspace
+cp /analyzer.js /
+cp /package-lock.json /
+cp /package.json /
 
 npm install
 
-node main.js $@
+node analyzer.js $@
 
 if [ $? != 0 ]; then
   echo "Execution error"
