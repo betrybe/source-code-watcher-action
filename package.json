@@ -4,29 +4,29 @@
     "description": "",
     "main": "main.js",
     "scripts": {
-      "test": "jest"
+        "test": "jest"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "@babel/parser": "^7.14.7",
-      "@babel/traverse": "^7.14.7",
-      "eslint": "^7.30.0",
-      "eslint-config-airbnb": "^18.2.1",
-      "eslint-plugin-import": "^2.23.4",
-      "eslint-plugin-jsx-a11y": "^6.4.1",
-      "eslint-plugin-react-func": "^0.1.17",
-      "eslint-plugin-react-hooks": "^4.2.0",
-      "eslint-plugin-react-redux": "^3.3.2",
-      "typhonjs-escomplex": "^0.0.12"
+        "@babel/parser": "^7.14.7",
+        "@babel/traverse": "^7.14.7",
+        "eslint": "^7.30.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.23.4",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react-func": "^0.1.17",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "eslint-plugin-react-redux": "^3.3.2",
+        "minimatch": "^3.0.4",
+        "typhonjs-escomplex": "^0.0.12"
     },
     "devDependencies": {
-      "es6-plato": "^1.2.3",
-      "eslint-plugin-no-unsanitized": "^3.1.5",
-      "eslint-plugin-react": "^7.24.0",
-      "eslint-plugin-security": "^1.4.0",
-      "eslint-plugin-sonarjs": "^0.9.1",
-      "jest": "^27.0.6"
+        "es6-plato": "^1.2.3",
+        "eslint-plugin-no-unsanitized": "^3.1.5",
+        "eslint-plugin-react": "^7.24.0",
+        "eslint-plugin-security": "^1.4.0",
+        "eslint-plugin-sonarjs": "^0.9.1",
+        "jest": "^27.0.6"
     }
-  }
-  
+}
