@@ -1,0 +1,15 @@
+name: 'Source code analyzer'
+description: 'Analyze source code quality'
+inputs:
+  file:
+    description: 'Path to file'
+    required: true
+outputs:
+  result:
+    description: 'Source code result JSON as a base64 format'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.file }}
+  
