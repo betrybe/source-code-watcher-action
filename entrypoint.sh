@@ -1,7 +1,6 @@
 #!/bin/sh -l
 echo ${GITHUB_WORKSPACE}
 cp /analyzer.js ${GITHUB_WORKSPACE}
-cp /package-lock.json ${GITHUB_WORKSPACE}
 cp /package.json ${GITHUB_WORKSPACE}
 
 npm install

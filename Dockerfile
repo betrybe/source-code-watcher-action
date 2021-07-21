@@ -8,5 +8,7 @@ RUN apt update && apt install apt-utils gconf-service libasound2 libatk1.0-0 lib
 
 COPY entrypoint.sh /entrypoint.sh
 COPY analyzer.js /analyzer.js
+COPY package.json /package.json
+
 
 ENTRYPOINT ["/entrypoint.sh"]
