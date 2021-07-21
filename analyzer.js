@@ -3,21 +3,23 @@ const escomplex = require('typhonjs-escomplex');
 const ESLint = require("eslint").ESLint;
 const parser = require("@babel/parser");
 const traverse = require("@babel/traverse").default;
+const path = require("path")
+const minimatch = require("minimatch")
+const allowed_extensions = ['.js', '.jsx']
 
 function fileComplexity(file){
     try{
-        let out_json = {}
+        let dict = {}
         const report = escomplex.analyzeModule(file);
-    
-        out_json['cyclomatic'] = report.methodAverage.cyclomatic
-        out_json['cyclomaticDensity'] = report.methodAverage.cyclomaticDensity
+        dict['cyclomatic'] = report.methodAverage.cyclomatic
+        dict['cyclomaticDensity'] = report.methodAverage.cyclomaticDensity
         // halstead
         for (item in report.methodAverage.halstead){
             if (item != 'operands' && item != 'operators')
-            out_json['halstead_'+item] = report.methodAverage.halstead[item]
+            dict['halstead_'+item] = report.methodAverage.halstead[item]
         }
-        out_json['maintainability'] = report.maintainability
-        return out_json
+        dict['maintainability'] = report.maintainability
+        return dict
     }
     catch (e) {
         return {};
@@ -45,7 +47,6 @@ async function fileLinter(file){
                     "es2020": true
                   },
             }
-            
         });
         const result = await cli.lintText(file);
         const messages = result[0]['messages'] 
@@ -65,7 +66,6 @@ async function fileLinter(file){
         return {};
     }
 }
-
 
 
 function fileStats(file){
@@ -105,8 +105,46 @@ async function process_file(file){
     return dict_out
 }
 
-process_file(process.argv[2]).then(function(result) {
-    fs.writeFileSync('result.json', JSON.stringify(result))
-    process.exit();
-});
+function main(dir){
+    // attemp to get ignore
+    if (fs.existsSync(dir + "/" + ".eslintignore")){
+        var ignore_pattern = fs.readFileSync(dir + "/" + ".eslintignore").toString().split("\n");
+    }
+    else{
+        var ignore_pattern = []
+    }
+    // get files
+    var files = getAllFiles(dir)
+    files.forEach(function(file){
+        // check pattern
+        let file_path = file.replace(dir, "/")
+        file_path = file_path.replace("//", "")
+        let allowed = true
+        for(var p in ignore_pattern){
+            if (minimatch(file_path, ignore_pattern[p], { matchBase: true})){
+                allowed = false
+            }
+        }
+        // good to go
+        if ((allowed) && (allowed_extensions.includes(path.extname(file_path)))){
+            console.log(file_path)
+            process_file(file).then(function(result) {
+                // fs.writeFileSync('result.json', JSON.stringify(result))
+                //console.log(JSON.stringify(result))
+                // process.exit();
+            });
+        }
+        
+    });
+ 
 
+}
+
+const getAllFiles = dir =>
+  fs.readdirSync(dir).reduce((files, file) => {
+    const name = path.join(dir, file);
+    const isDirectory = fs.statSync(name).isDirectory();
+    return isDirectory ? [...files, ...getAllFiles(name)] : [...files, name];
+  }, []);
+
+main(process.argv[2])
