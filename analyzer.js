@@ -6,6 +6,7 @@ const traverse = require("@babel/traverse").default;
 const path = require("path")
 const minimatch = require("minimatch")
 const allowed_extensions = ['.js', '.jsx']
+const excluded_patterns = ['node_modules']
 
 function fileComplexity(file){
     try{
@@ -126,8 +127,7 @@ function main(dir){
             }
         }
         // good to go
-        if ((allowed) && (allowed_extensions.includes(path.extname(file_path)))){
-            console.log(file_path)
+        if ((allowed) && (allowed_extensions.includes(path.extname(file_path)) && (!file_path.includes('node_modules')))){
             process_file(file).then(function(result) {
                 // fs.writeFileSync('result.json', JSON.stringify(result))
                 console.log(JSON.stringify(result))
