@@ -114,6 +114,7 @@ function main(dir, user, project, url, token){
     else{
         var ignore_pattern = []
     }
+    ignore_pattern.push('analyzer.js')
     // get files
     var files = getAllFiles(dir)
     files.forEach(function(file){
@@ -136,7 +137,7 @@ function main(dir, user, project, url, token){
                 json_out =  JSON.stringify(result)
                 const options = {
                     method: 'POST',
-                    headers: { 'content-type': 'application/json', 'x-key': token },
+                    headers: { 'content-type': 'application/json', 'x-Key': token },
                     data: json_out,
                     url,
                 }
