@@ -140,7 +140,8 @@ function main(dir, user, project, url, token){
                     data: json_out,
                     url,
                 }
-                axios(options);
+                console.log(options)
+                //axios(options);
             });
         }
         
