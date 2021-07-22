@@ -130,7 +130,7 @@ function main(dir){
             console.log(file_path)
             process_file(file).then(function(result) {
                 // fs.writeFileSync('result.json', JSON.stringify(result))
-                //console.log(JSON.stringify(result))
+                console.log(JSON.stringify(result))
                 // process.exit();
             });
         }
@@ -147,4 +147,5 @@ const getAllFiles = dir =>
     return isDirectory ? [...files, ...getAllFiles(name)] : [...files, name];
   }, []);
 
+console.log(process.argv)
 main(process.argv[2])

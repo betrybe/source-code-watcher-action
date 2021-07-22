@@ -5,7 +5,7 @@ cp /package.json ${GITHUB_WORKSPACE}
 
 npm install
 
-node analyzer.js ${GITHUB_WORKSPACE}
+node analyzer.js ${GITHUB_WORKSPACE} $@
 
 if [ $? != 0 ]; then
   echo "Execution error"

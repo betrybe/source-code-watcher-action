@@ -1,8 +1,11 @@
 name: 'Source code analyzer'
 description: 'Analyze source code quality'
 inputs:
-  file:
+  github-username:
     description: 'Path to file'
+    required: true
+  project-name:
+    description: 'Project Name'
     required: true
 outputs:
   result:
@@ -11,5 +14,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.file }}
+    - ${{ inputs.github-username }}
+    - ${{ inputs.project-name }}
   
