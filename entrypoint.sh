@@ -2,7 +2,7 @@
 echo ${GITHUB_WORKSPACE}
 cp /analyzer.js ${GITHUB_WORKSPACE}
 cp /package.json ${GITHUB_WORKSPACE}
-
+echo $@
 npm install
 
 node analyzer.js ${GITHUB_WORKSPACE} $@
