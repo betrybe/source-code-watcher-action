@@ -7,6 +7,12 @@ inputs:
   project-name:
     description: 'Project Name'
     required: true
+  url:
+    description: 'post url for upload'
+    required: true
+  token:
+    description: 'authentication token to send package'
+    required: true
 outputs:
   result:
     description: 'Source code result JSON as a base64 format'
@@ -16,4 +22,6 @@ runs:
   args:
     - ${{ inputs.github-username }}
     - ${{ inputs.project-name }}
+    - ${{ inputs.url }}
+    - ${{ inputs.token }}
   

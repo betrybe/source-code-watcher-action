@@ -11,6 +11,7 @@
     "dependencies": {
         "@babel/parser": "^7.14.7",
         "@babel/traverse": "^7.14.7",
+        "axios": "^0.21.1",
         "eslint": "^7.30.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-plugin-import": "^2.23.4",

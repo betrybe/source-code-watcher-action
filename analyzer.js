@@ -6,7 +6,7 @@ const traverse = require("@babel/traverse").default;
 const path = require("path")
 const minimatch = require("minimatch")
 const allowed_extensions = ['.js', '.jsx']
-const excluded_patterns = ['node_modules']
+const axios = require('axios')
 
 function fileComplexity(file){
     try{
@@ -106,7 +106,7 @@ async function process_file(file){
     return dict_out
 }
 
-function main(dir){
+function main(dir, user, project, url, token){
     // attemp to get ignore
     if (fs.existsSync(dir + "/" + ".eslintignore")){
         var ignore_pattern = fs.readFileSync(dir + "/" + ".eslintignore").toString().split("\n");
@@ -129,9 +129,18 @@ function main(dir){
         // good to go
         if ((allowed) && (allowed_extensions.includes(path.extname(file_path)) && (!file_path.includes('node_modules')))){
             process_file(file).then(function(result) {
-                // fs.writeFileSync('result.json', JSON.stringify(result))
-                console.log(JSON.stringify(result))
-                // process.exit();
+                // send file
+                result['author'] = user
+                result['project_name'] = project
+                result['file'] = file_path
+                json_out =  JSON.stringify(result)
+                const options = {
+                    method: 'POST',
+                    headers: { 'content-type': 'application/json', 'x-key': token },
+                    data: json_out,
+                    url,
+                }
+                axios(options);
             });
         }
         
@@ -148,4 +157,4 @@ const getAllFiles = dir =>
   }, []);
 
 console.log(process.argv)
-main(process.argv[2])
+main(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6])
