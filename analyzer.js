@@ -137,12 +137,12 @@ function main(dir, user, project, url, token){
                 json_out =  JSON.stringify(result)
                 const options = {
                     method: 'POST',
-                    headers: { 'content-type': 'application/json', 'x-Key': token },
+                    headers: { 'content-type': 'application/json', 'X-Key': token },
                     data: json_out,
                     url,
                 }
                 console.log(options)
-                //axios(options);
+                axios(options);
             });
         }
         

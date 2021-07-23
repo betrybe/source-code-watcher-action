@@ -20,7 +20,8 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-plugin-react-redux": "^3.3.2",
         "minimatch": "^3.0.4",
-        "typhonjs-escomplex": "^0.0.12"
+        "typhonjs-escomplex": "^0.0.12",
+        "lodash": ">=4.17.21"
     },
     "devDependencies": {
         "es6-plato": "^1.2.3",
