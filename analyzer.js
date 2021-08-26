@@ -106,7 +106,9 @@ async function process_file(file){
     return dict_out
 }
 
-function main(dir, user, project, url, token){
+function main(dir, user, project, commit_sha, url, token){
+    // get current timestamp
+    let cur_timestamp = new Date()
     // attemp to get ignore
     if (fs.existsSync(dir + "/" + ".eslintignore")){
         var ignore_pattern = fs.readFileSync(dir + "/" + ".eslintignore").toString().split("\n");
@@ -134,6 +136,8 @@ function main(dir, user, project, url, token){
                 result['author'] = user
                 result['project_name'] = project
                 result['file'] = file_path
+                result['commit_sha'] = commit_sha
+                result['timestamp'] = cur_timestamp
                 json_out =  JSON.stringify(result)
                 const options = {
                     method: 'POST',
@@ -147,8 +151,6 @@ function main(dir, user, project, url, token){
         }
         
     });
- 
-
 }
 
 const getAllFiles = dir =>
@@ -159,4 +161,4 @@ const getAllFiles = dir =>
   }, []);
 
 console.log(process.argv)
-main(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6])
+main(process.argv[2], process.argv[3], process.argv[4], process.argv[5], process.argv[6], process.argv[7])

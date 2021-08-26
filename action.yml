@@ -7,8 +7,11 @@ inputs:
   project-name:
     description: 'Project Name'
     required: true
+  commit-sha:
+    description: 'Commit hash'
+    required: true
   url:
-    description: 'post url for upload'
+    description: 'Url for upload'
     required: true
   token:
     description: 'authentication token to send package'
@@ -22,6 +25,7 @@ runs:
   args:
     - ${{ inputs.github-username }}
     - ${{ inputs.project-name }}
+    - ${{ inputs.commit-sha }}
     - ${{ inputs.url }}
     - ${{ inputs.token }}
   
